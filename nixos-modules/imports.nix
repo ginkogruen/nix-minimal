@@ -8,16 +8,8 @@
     ./impermanence.nix
     ./sops-nix.nix # global sops-nix config
 
-    # ./neovim
-    ./neovim/nixvim.nix # neovim nixos
-
     # ./services
     ./services/openssh.nix # ssh
     ./services/tailscale.nix
-
-    # ./shell
-    ./shell/profiles.nix # import shell related modules
-    ./shell/starship.nix
-    ./shell/zoxide.nix
   ];
 }

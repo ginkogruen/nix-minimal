@@ -11,7 +11,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/nvme0n1"; # move this into configuration.nix
         content = {
           type = "gpt";
           partitions = {
@@ -22,6 +22,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = ["umask=0077"];
               };
             };
             zfs = {

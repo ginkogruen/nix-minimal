@@ -30,7 +30,6 @@
     console.enable = true;
     impermanence.enable = true;
     localisation.enable = true;
-    neovim.nixvim.enable = false;
     nh.enable = true;
     nix-options.enable = true;
     sops-nix.enable = true;
@@ -78,21 +77,8 @@
     onefetch
     ncdu
     tree
-    kitty
   ];
 
-  fonts.packages = with pkgs; [
-    fira-code
-    iosevka
-    source-code-pro
-    font-awesome
-    sarasa-gothic
-    (nerdfonts.override {
-      fonts = [
-        "Iosevka"
-      ];
-    })
-  ];
 
   #boot.initrd.kernelModules = ["amdgpu"]; # TITAN SPEC.: non amdgpu
 

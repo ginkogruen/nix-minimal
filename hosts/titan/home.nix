@@ -10,8 +10,6 @@
   custom = {
     direnv.enable = true;
     git.enable = true;
-    kitty.enable = true;
-    neovim.nixvim.enable = true;
     shell.enable = true;
     sops-nix.enable = true;
     ssh.enable = true;
