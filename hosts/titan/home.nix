@@ -13,7 +13,6 @@
     shell.enable = true;
     sops-nix.enable = true;
     ssh.enable = true;
-    vifm.enable = true;
   };
 
   /*

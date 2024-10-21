@@ -18,10 +18,6 @@
   */
 
   custom = {
-    profiles = {
-      shell.profile = "default";
-    };
-
     services = {
       tailscale.enable = true;
       openssh.enable = true;
@@ -65,18 +61,9 @@
 
   environment.systemPackages = with pkgs; [
     zfs # TODO Create separate ZFS module
-    btop
     curl
     gh
     git
-    unzip
-    vifm
-    zip
-    tmux
-    fastfetch
-    onefetch
-    ncdu
-    tree
   ];
 
 
