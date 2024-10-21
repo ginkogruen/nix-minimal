@@ -30,7 +30,7 @@
     console.enable = true;
     impermanence.enable = true;
     localisation.enable = true;
-    neovim.nixvim.enable = true;
+    neovim.nixvim.enable = false;
     nh.enable = true;
     nix-options.enable = true;
     sops-nix.enable = true;
