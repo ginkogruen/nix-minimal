@@ -1,0 +1,13 @@
+keys:
+  - &users:
+    - &ginkogruen age1p7jm9r3c6lvgwzfl86jtuzhcr5fgzfl3q9g2zzk68dx0ruhy2y4snt9zml
+  - &hosts:
+    - &enceladus age182klrjs4juzsej6rj3c24mka6fgpfshe5ahea6tna4t0kt6553ns9uvfe6
+    - &mimas age1rhy6sa4xp3t2jez2wn4dq0ywtj5d5v9u07lk9lvh06lp5st783aqp55l4k 
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age:
+      - *ginkogruen
+      - *enceladus
+      - *mimas
