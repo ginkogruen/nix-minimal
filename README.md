@@ -29,4 +29,4 @@ I may not hit every one of these goals so these are subject to change.
 
 - [Graham Christensen - ZFS Datasets for NixOS](https://grahamc.com/blog/nixos-on-zfs/)
 - [Graham Christensen - Erase your darlings](https://grahamc.com/blog/erase-your-darlings/)
-- [Remote, encrypted storage server with NixOS](https://mazzo.li/posts/hetzner-zfs.html)
+- [Remote, encrypted ZFS storage server with NixOS](https://mazzo.li/posts/hetzner-zfs.html)
