@@ -1,19 +1,31 @@
-# .nixfiles
+# nix-minimal
 
-Configuration for my systems written in Nix.
+Minimal opinionated NixOS configuration to be used as a base system to build upon.
 
-## Option naming convention
+The Aim is to provide a structure for all things which have to be done
+on install and can't easily be changed later.
 
-Options are named according to the **file** they are declared in and its
-**location** in the repository.
-In order to differentiate options created by me from other options they are
-prefixed by the keyword `custom`.
-The folders `hm-modules` and `nixos-modules` are not specified in the option
-name because they are implicit.
+It should also be possible to set this up with minimal interaction and effort.
 
-Examples:
+## Functionality goals
 
-- `custom.windowManager.cosmic.enable` is an option enabling cosmic
-window manager located in `/nixos-modules/windowManager/cosmic.nix`
-- `custom.emacs.enable` is an option enabling emacs related
-configuration located in `/hm-modules/emacs/emacs.nix`
+I aim to hit the following functionality goals for my systems:
+
+- [ ] Declarative partitioning using [disko](https://github.com/nix-community/disko)
+- [ ] Systemd-boot as bootloader
+- [ ] ZFS filesystem
+- [ ] Full disk encryption with ZFS encryption
+- [ ] Encryption unlockable through SSH
+- [ ] SWAP partition
+- [ ] Impermanence setup for NixOS and home-manager
+- [ ] Impermanence rollback via ZFS snapshot
+- [ ] Secrets management using [sops-nix](https://github.com/Mic92/sops-nix)
+- [ ] Documentation for how things work
+- [ ] Setup with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
+
+I may not hit every one of these goals so these are subject to change.
+
+## Documentation resources
+
+- [Graham Christensen - ZFS Datasets for NixOS](https://grahamc.com/blog/nixos-on-zfs/)
+- [Graham Christensen - Erase your darlings](https://grahamc.com/blog/erase-your-darlings/)
