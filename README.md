@@ -11,10 +11,10 @@ It should also be possible to set this up with minimal interaction and effort.
 
 I aim to hit the following functionality goals for my systems:
 
-- [ ] Declarative partitioning using [disko](https://github.com/nix-community/disko)
-- [ ] Systemd-boot as bootloader
-- [ ] ZFS filesystem
-- [ ] Full disk encryption with ZFS encryption
+- [x] Declarative partitioning using [disko](https://github.com/nix-community/disko)
+- [x] Systemd-boot as bootloader
+- [x] ZFS filesystem
+- [x] Full disk encryption with ZFS encryption
 - [ ] Encryption unlockable through SSH
 - [ ] SWAP partition
 - [ ] Impermanence setup for NixOS and home-manager
