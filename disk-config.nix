@@ -44,10 +44,16 @@
           acltype = "posixacl";
           atime = "off";
           compression = "zstd";
+          encryption = "aes-256-gcm"; # Set up Encryption for pool
+          keyformat = "passphrase";
+          keylocation = "file:///tmp/secret.key"; # NOTE must be set during initial installation step
           mountpoint = "none";
           xattr = "sa";
         };
         options.ashift = "12";
+        postCreateHook = ''
+          zfs set keylocation="prompt" $name;
+        '';
 
         datasets = {
           "local" = {
