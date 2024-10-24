@@ -32,13 +32,13 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./hosts/titan/configuration.nix
+          ./configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.ginkogruen = import ./hosts/titan/home.nix;
+              users.ginkogruen = import ./home.nix;
               extraSpecialArgs = {inherit inputs;};
 	      sharedModules = [];
             };

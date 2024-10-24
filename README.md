@@ -22,6 +22,7 @@ I aim to hit the following functionality goals for my systems:
 - [ ] Secrets management using [sops-nix](https://github.com/Mic92/sops-nix)
 - [ ] Documentation for how things work
 - [ ] Setup with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
+- [ ] Optional secure boot with [lanzaboote](https://github.com/nix-community/lanzaboote)
 
 I may not hit every one of these goals so these are subject to change.
 
