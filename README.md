@@ -16,7 +16,7 @@ I aim to hit the following functionality goals for my systems:
 - [x] ZFS filesystem
 - [x] Full disk encryption with ZFS encryption
 - [ ] Encryption unlockable through SSH
-- [ ] SWAP partition
+- [ ] ~~SWAP partition~~
 - [ ] Impermanence setup for NixOS and home-manager
 - [ ] Impermanence rollback via ZFS snapshot
 - [ ] Secrets management using [sops-nix](https://github.com/Mic92/sops-nix)
