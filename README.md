@@ -7,6 +7,34 @@ on install and can't easily be changed later.
 
 It should also be possible to set this up with minimal interaction and effort.
 
+## Installation guide
+
+For installing this config use nixos anywhere
+
+While nixos-anywhere can be installed through different ways I'd like to install from the NixOS installer.
+
+To do this boot the installer and set a password via:
+```bash
+passwd "password"
+```
+
+Then find out the ip adress to reach your target machine with:
+```bash
+ip addr
+```
+
+And finally install with nixos-anywhere using the following command:
+```bash
+nix run github:nix-community/nixos-anywhere -- --flake '.#titan' nixos@<ip-adress>
+```
+
+Note:
+If you are on a non x86_64-linux system specify additionally `--build-on-remote`.
+
+Specify disk encryption keys using `--disk-encryption-keys /tmp/secret.key <path-to-local-keyfile>`.
+
+**TODO: Add documentation for passing additional files with `--extra-files`**
+
 ## Functionality goals
 
 I aim to hit the following functionality goals for my systems:
@@ -21,7 +49,7 @@ I aim to hit the following functionality goals for my systems:
 - [ ] Impermanence rollback via ZFS snapshot
 - [ ] Secrets management using [sops-nix](https://github.com/Mic92/sops-nix)
 - [ ] Documentation for how things work
-- [ ] Setup with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
+- [x] Setup with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
 - [ ] Optional secure boot with [lanzaboote](https://github.com/nix-community/lanzaboote)
 
 I may not hit every one of these goals so these are subject to change.
