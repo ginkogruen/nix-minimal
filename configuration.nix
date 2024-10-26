@@ -41,6 +41,23 @@
 
   # NixOS configuration
 
+  # Remote disk unlocking
+  boot.initrd = {
+    availableKernelModules = ["r8169"];
+    network = {
+      enable = true;
+      udhcpc.enable = true;
+      flushBeforeStage2 = true;
+      ssh = {
+        enable = true;
+        port = 22;
+        authorizedKeys = [];
+        hostKeys = ["/etc/secrets/initrd/ssh_host_ed25519_key"];
+      };
+      #postCommands = '''';
+    };
+  };
+
   # OpenSSH
   services.openssh = {
     enable = true;
