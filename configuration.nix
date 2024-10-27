@@ -62,33 +62,40 @@
     };
   };
 
-  # OpenSSH
-  services.openssh = {
-    enable = true;
-    startWhenNeeded = true;
-    settings = {
-      PermitRootLogin = "prohibit-password";
-      PasswordAuthentication = false;
-      LogLevel = "VERBOSE";
+  services = {
+    # OpenSSH
+    openssh = {
+      enable = true;
+      startWhenNeeded = true;
+      settings = {
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = false;
+        LogLevel = "VERBOSE";
+      };
+      knownHosts = {};
+      hostKeys = [
+        {
+          bits = 4096;
+          path = "/etc/ssh/ssh_host_rsa_key";
+          type = "rsa";
+        }
+        {
+          path = "/etc/ssh/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
     };
-    knownHosts = {};
-    hostKeys = [
-      {
-        bits = 4096;
-        path = "/etc/ssh/ssh_host_rsa_key";
-        type = "rsa";
-      }
-      {
-        path = "/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-    ];
-  };
 
-  # Tailscale
-  services.tailscale = {
-    enable = true;
-    authKeyFile = "/run/secrets/tailscale-auth-key";
+    # Tailscale
+    tailscale = {
+      enable = true;
+      authKeyFile = "/run/secrets/tailscale-auth-key";
+    };
+
+    xserver = {
+      xkb.layout = "us";
+      xkb.variant = "";
+    };
   };
 
   # Set the locale
