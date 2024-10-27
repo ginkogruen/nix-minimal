@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -31,16 +32,19 @@
 
     age = {
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-      keyFile = "/var/lib/sops-nix/key.txt";
+      keyFile = "/persist/var/lib/sops-nix/key.txt"; # Needs to be in persist if using impermanence
       generateKey = true;
     };
 
     secrets = {
+      "users/ginkogruen-pw".neededForUsers = true;
+      "users/root-pw".neededForUsers = true;
     };
   };
 
   # NixOS configuration
 
+  /*
   # Remote disk unlocking
   boot.initrd = {
     availableKernelModules = ["r8169"];
@@ -98,10 +102,7 @@
   # Enable nix-command and flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
+  boot.initrd.systemd.enable = true; # Will this fix my issues with booting
 
   boot = {
     loader = {
@@ -133,17 +134,21 @@
     };
   };
 
-  # Declarative users only
-  users.mutableUsers = false;
-
-  # User account definition
-  users.users.ginkogruen = {
-    createHome = true;
-    description = "ginkogruen";
-    extraGroups = ["networkmanager" "wheel"];
-    # TODO Replace hashedPassword by password managed via sops-nix
-    hashedPassword = "$y$j9T$i1ERvOjhZbWaKF/9iE6Sx.$JAfRtqcImKIpcUGe.8SPGs25KwYVOtpm.Yr0cSzQ6n5"; # 'initpw'
-    isNormalUser = true;
+  users = {
+    mutableUsers = false; # Declarative users only
+    users = {
+      root = {
+        #initialPassword = "password";
+        hashedPasswordFile = config.sops.secrets."users/root-pw".path;
+      };
+      ginkogruen = {
+        isNormalUser = true;
+        createHome = true;
+        #initialPassword = "password";
+        hashedPasswordFile = config.sops.secrets."users/ginkogruen-pw".path;
+        extraGroups = ["networkmanager" "wheel"];
+      };
+    };
   };
 
   system.stateVersion = "24.05"; # You know the deal.

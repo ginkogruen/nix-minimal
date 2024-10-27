@@ -63,22 +63,26 @@
           "local/home" = {
             type = "zfs_fs";
             mountpoint = "/home";
+	    options.mountpoint = "legacy";
             # Used by services.zfs.autoSnapshot options.
             options."com.sun:auto-snapshot" = "true";
           };
           "local/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
+	    options.mountpoint = "legacy";
             options."com.sun:auto-snapshot" = "false";
           };
           "local/persist" = {
             type = "zfs_fs";
             mountpoint = "/persist";
+	    options.mountpoint = "legacy";
             options."com.sun:auto-snapshot" = "false";
           };
           "local/root" = {
             type = "zfs_fs";
             mountpoint = "/";
+	    options.mountpoint = "legacy";
             options."com.sun:auto-snapshot" = "false";
             postCreateHook = "zfs snapshot zroot/local/root@blank";
           };
