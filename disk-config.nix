@@ -11,7 +11,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1"; # move this into configuration.nix
+        device = "/dev/nvme0n1"; # TODO move this into configuration.nix
         content = {
           type = "gpt";
           partitions = {
