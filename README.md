@@ -33,7 +33,7 @@ If you are on a non x86_64-linux system specify additionally `--build-on-remote`
 
 Specify disk encryption keys using `--disk-encryption-keys /tmp/secret.key <path-to-local-keyfile>`.
 
-**TODO: Add documentation for passing additional files with `--extra-files`**
+**TODO: Add documentation for passing additional files with `--extra-files` and `--generate-hardware-config`**
 
 ## Functionality goals
 
