@@ -55,12 +55,16 @@
       ssh = {
         enable = true;
         port = 22;
-        authorizedKeys = [];
+        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBo8xzMm6ra19K1T3MK+avAUaQdQ1ApmSI0DBB2jJHC" ];
         hostKeys = ["/etc/secrets/initrd/ssh_host_ed25519_key"];
       };
-      #postCommands = '''';
+      #postCommands = ''
+      zpool import -a
+      echo "zfs load-key -a; killall zfs" >> /root/.profile
+      '';
     };
   };
+  */
 
   services = {
     # OpenSSH
