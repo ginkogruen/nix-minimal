@@ -167,6 +167,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    tmp.cleanOnBoot = true; # Make /tmp work stateless
     supportedFilesystems = ["zfs"];
     kernelParams = ["nohibernate"]; # Needed for ZFS
   };

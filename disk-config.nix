@@ -93,6 +93,12 @@
             options."com.sun:auto-snapshot" = "false";
             postCreateHook = "zfs snapshot zroot/local/root@blank";
           };
+	  "local/tmp" = {
+            type = "zfs_fs";
+            mountpoint = "/tmp";
+            #options.mountpoint = "legacy";
+            options."com.sun:auto-snapshot" = "false";
+	  };
         };
       };
     };
