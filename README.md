@@ -35,22 +35,43 @@ Specify disk encryption keys using `--disk-encryption-keys /tmp/secret.key <path
 
 **TODO: Add documentation for passing additional files with `--extra-files` and `--generate-hardware-config`**
 
+## Unlock via SSH
+
+To unlock via SSH connect to the machine with:
+
+```bash
+ssh root@<ip-address>
+```
+
+Then when connected in initrd enter:
+
+```bash
+systemctl default
+```
+
+Enter the correct password and you are set.
+
+*Note I don't know if this is the best way to go about this but it does work.*
+
 ## Functionality goals
 
 I aim to hit the following functionality goals for my systems:
 
 - [x] Declarative partitioning using [disko](https://github.com/nix-community/disko)
 - [x] Systemd-boot as bootloader
+- [x] Systemd in initrd
 - [x] ZFS filesystem
 - [x] Full disk encryption with ZFS encryption
-- [ ] Encryption unlockable through SSH
+- [x] Encryption unlockable through SSH
 - [ ] ~~SWAP partition~~
-- [ ] Impermanence setup for NixOS and home-manager
-- [ ] Impermanence rollback via ZFS snapshot
-- [ ] Secrets management using [sops-nix](https://github.com/Mic92/sops-nix)
+- [x] Impermanence setup for NixOS
+- [x] Impermanence rollback via ZFS snapshot
+- [x] Impermanence setup for home-manager
+- [ ] Impermanence safety snapshot on shutdown
 - [ ] Documentation for how things work
 - [x] Setup with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
 - [ ] Optional secure boot with [lanzaboote](https://github.com/nix-community/lanzaboote)
+- [x] Setup with [home-manager](https://github.com/nix-community/home-manager)
 
 I may not hit every one of these goals so these are subject to change.
 

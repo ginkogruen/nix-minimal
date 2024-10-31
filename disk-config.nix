@@ -63,26 +63,33 @@
           "local/home" = {
             type = "zfs_fs";
             mountpoint = "/home";
-	    options.mountpoint = "legacy";
+            #options.mountpoint = "legacy";
             # Used by services.zfs.autoSnapshot options.
             options."com.sun:auto-snapshot" = "true";
+            postCreateHook = "zfs snapshot zroot/local/home@blank";
           };
           "local/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
-	    options.mountpoint = "legacy";
+            #options.mountpoint = "legacy";
             options."com.sun:auto-snapshot" = "false";
           };
           "local/persist" = {
             type = "zfs_fs";
             mountpoint = "/persist";
-	    options.mountpoint = "legacy";
+            #options.mountpoint = "legacy";
+            options."com.sun:auto-snapshot" = "false";
+          };
+          "local/cache" = {
+            type = "zfs_fs";
+            mountpoint = "/cache";
+            #options.mountpoint = "legacy";
             options."com.sun:auto-snapshot" = "false";
           };
           "local/root" = {
             type = "zfs_fs";
             mountpoint = "/";
-	    options.mountpoint = "legacy";
+            #options.mountpoint = "legacy";
             options."com.sun:auto-snapshot" = "false";
             postCreateHook = "zfs snapshot zroot/local/root@blank";
           };
@@ -96,5 +103,9 @@
   # https://github.com/nix-community/disko/issues/192
   # Apparently there isn't a disko config option for this setting so the normal fileSystems option is expected to be used.
   # For ZFS native mounts another user recommended setting: 'boot.initrd.systemd.enable = true'. I don't know if this would be better currently
-  fileSystems."/persist".neededForBoot = true;
+  fileSystems = {
+    "/cache".neededForBoot = true;
+    "/home".neededForBoot = true; # NOTE: I think I need this for home-manager to work correctly
+    "/persist".neededForBoot = true;
+  };
 }

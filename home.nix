@@ -1,6 +1,20 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
+    inputs.impermanence.nixosModules.home-manager.impermanence
   ];
+
+  # Impermanence config (home-manager)
+  home.persistence."/persist/home/ginkogruen" = {
+    directories = [
+      "Downloads"
+      ".local/state/nix/profiles" # Probable fix for home-manager not starting
+    ];
+    allowOther = true; # Needs 'programs.fuse.userAllowOther = true;'
+  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

@@ -13,7 +13,7 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
-  # Impermanence options
+  # Impermanence config
   environment.persistence."/persist" = {
     enable = true;
     hideMounts = true;
@@ -23,6 +23,23 @@
       "/var/lib/nixos" # for persisting user uids and gids
     ];
   };
+
+  # Create home directory in /persist with appropriate permissions
+  # This enables home-manager to work correctly
+  systemd.tmpfiles.settings = {
+    "persist-ginkogruen-homedir" = {
+      "/persist/home/ginkogruen" = {
+        d = {
+          group = "users";
+          user = "ginkogruen";
+          mode = "0700";
+        };
+      };
+    };
+  };
+
+  programs.fuse.userAllowOther = true; # Allow root to access bind mounts (impermanence)
+  security.sudo.extraConfig = "Defaults lecture=never"; # Keep sudo from lecturing
 
   # Sops-Nix options
   sops = {
@@ -39,32 +56,11 @@
     secrets = {
       "users/ginkogruen-pw".neededForUsers = true;
       "users/root-pw".neededForUsers = true;
+      "private_keys/initrd-host-key" = {};
     };
   };
 
   # NixOS configuration
-
-  /*
-  # Remote disk unlocking
-  boot.initrd = {
-    availableKernelModules = ["r8169"];
-    network = {
-      enable = true;
-      udhcpc.enable = true;
-      flushBeforeStage2 = true;
-      ssh = {
-        enable = true;
-        port = 22;
-        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBo8xzMm6ra19K1T3MK+avAUaQdQ1ApmSI0DBB2jJHC" ];
-        hostKeys = ["/etc/secrets/initrd/ssh_host_ed25519_key"];
-      };
-      #postCommands = ''
-      zpool import -a
-      echo "zfs load-key -a; killall zfs" >> /root/.profile
-      '';
-    };
-  };
-  */
 
   services = {
     # OpenSSH
@@ -113,9 +109,60 @@
   # Enable nix-command and flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  boot.initrd.systemd.enable = true; # Will this fix my issues with booting
-
   boot = {
+    initrd = {
+      systemd = {
+        enable = true; # Magic setting do not disable (Fixes ZFS boot order issues)
+        network = {
+          networks."10-eno1" = {
+            matchConfig.Name = "eno1";
+            networkConfig.DHCP = "ipv4";
+          };
+        };
+        services = {
+          # Systemd service doing the rollback on boot
+          # Taken from discourse from hexa (co-author lilyinstarlight)
+          rollback = {
+            description = "Rollback ZFS datasets to a pristine state";
+            wantedBy = ["initrd.target"];
+            after = ["zfs-import-zroot.service"];
+            before = ["sysroot.mount"];
+            path = with pkgs; [zfs];
+            unitConfig.DefaultDependencies = "no";
+            serviceConfig.Type = "oneshot";
+            script = ''
+              zfs rollback -r zroot/local/root@blank && echo "rollback complete"
+            '';
+          };
+          # Rollback /home
+          rollback-home = {
+            description = "Rollback home directory to a pristine state";
+            wantedBy = ["initrd.target"];
+            after = ["zfs-import-zroot.service"];
+            before = ["sysroot.mount"];
+            path = with pkgs; [zfs];
+            unitConfig.DefaultDependencies = "no";
+            serviceConfig.Type = "oneshot";
+            script = ''
+              zfs rollback -r zroot/local/home@blank && echo "rollback complete"
+            '';
+          };
+        };
+        # TODO Configure systemd unit for ZFS unlock
+      };
+      availableKernelModules = ["r8169"];
+      network = {
+        enable = true;
+        ssh = {
+          enable = true;
+          port = 22;
+          authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILBo8xzMm6ra19K1T3MK+avAUaQdQ1ApmSI0DBB2jJHC"];
+          hostKeys = [
+            "${config.sops.secrets."private_keys/initrd-host-key".path}"
+          ];
+        };
+      };
+    };
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
