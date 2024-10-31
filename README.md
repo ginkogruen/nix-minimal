@@ -64,6 +64,7 @@ I aim to hit the following functionality goals for my systems:
 - [x] Declarative partitioning using [disko](https://github.com/nix-community/disko)
 - [x] Systemd-boot as bootloader
 - [x] Systemd in initrd
+- [ ] Network defined using systemd-networkd
 - [x] ZFS filesystem
 - [x] Full disk encryption with ZFS encryption
 - [x] Encryption unlockable through SSH
@@ -72,10 +73,16 @@ I aim to hit the following functionality goals for my systems:
 - [x] Impermanence rollback via ZFS snapshot
 - [x] Impermanence setup for home-manager
 - [ ] Impermanence safety snapshot on shutdown
+- [x] Secrets management using [sops-nix](https://github.com/Mic92/sops-nix)
 - [ ] Documentation for how things work
 - [x] Setup with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere)
+- [ ] Generate `hardware-configuration.nix` with nixos-anywhere
+- [ ] Optional hardware adjustment via [nixos-hardware](https://github.com/NixOS/nixos-hardware)
+- [ ] Optional hardware adjustment via [nixos-facter](https://github.com/numtide/nixos-facter)
 - [ ] Optional secure boot with [lanzaboote](https://github.com/nix-community/lanzaboote)
 - [x] Setup with [home-manager](https://github.com/nix-community/home-manager)
+- [ ] 15min apart snapshots on home
+- [ ] Support for TMPs
 
 I may not hit every one of these goals so these are subject to change.
 
