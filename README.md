@@ -11,21 +11,25 @@ It should also be possible to set this up with minimal interaction and effort.
 
 For installing this config use nixos anywhere
 
-While nixos-anywhere can be installed through different ways I'd like to install from the NixOS installer.
+While nixos-anywhere can be installed through different ways
+I'd like to install from the NixOS installer.
 
 To do this boot the installer and set a password via:
+
 ```bash
 passwd "password"
 ```
 
-Then find out the ip adress to reach your target machine with:
+Then find out the ip address to reach your target machine with:
+
 ```bash
 ip addr
 ```
 
 And finally install with nixos-anywhere using the following command:
+
 ```bash
-nix run github:nix-community/nixos-anywhere -- --flake '.#titan' nixos@<ip-adress>
+nix run github:nix-community/nixos-anywhere -- --flake '.#titan' nixos@<ip-address>
 ```
 
 Note:
