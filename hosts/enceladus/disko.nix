@@ -121,5 +121,6 @@
     "/persist".neededForBoot = true;
     "/cache".neededForBoot = true;
     "/home".neededForBoot = true;
+    "/".neededForBoot = true;
   };
 }

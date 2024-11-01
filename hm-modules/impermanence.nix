@@ -20,6 +20,7 @@
       files = [
         ".ssh/id_ed25519"
         ".ssh/id_ed25519.pub"
+	".config/sops/age/keys.txt"
       ];
       allowOther = true; # Needs 'programs.fuse.userAllowOther = true;'
     };
