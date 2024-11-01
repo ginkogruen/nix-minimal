@@ -44,11 +44,11 @@
           acltype = "posixacl";
           atime = "off";
           compression = "zstd";
+          mountpoint = "none";
+          xattr = "sa";
           encryption = "aes-256-gcm"; # Set up Encryption for pool
           keyformat = "passphrase";
           keylocation = "file:///tmp/secret.key"; # NOTE must be set during initial installation step
-          mountpoint = "none";
-          xattr = "sa";
         };
         options.ashift = "12";
         postCreateHook = ''
@@ -63,42 +63,50 @@
           "local/home" = {
             type = "zfs_fs";
             mountpoint = "/home";
-            #options.mountpoint = "legacy";
-            # Used by services.zfs.autoSnapshot options.
-            options."com.sun:auto-snapshot" = "true";
+            options = {
+              mountpoint = "/home";
+              # Used by services.zfs.autoSnapshot options.
+              "com.sun:auto-snapshot" = "true";
+            };
             postCreateHook = "zfs snapshot zroot/local/home@blank";
           };
           "local/nix" = {
             type = "zfs_fs";
             mountpoint = "/nix";
-            #options.mountpoint = "legacy";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              mountpoint = "/nix";
+            };
           };
           "local/persist" = {
             type = "zfs_fs";
             mountpoint = "/persist";
-            #options.mountpoint = "legacy";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              mountpoint = "/persist";
+            };
           };
           "local/cache" = {
             type = "zfs_fs";
             mountpoint = "/cache";
-            #options.mountpoint = "legacy";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              mountpoint = "/cache";
+            };
           };
           "local/root" = {
             type = "zfs_fs";
             mountpoint = "/";
-            #options.mountpoint = "legacy";
-            options."com.sun:auto-snapshot" = "false";
+            options = {
+              mountpoint = "/";
+            };
             postCreateHook = "zfs snapshot zroot/local/root@blank";
           };
-	  "local/tmp" = {
+          "local/tmp" = {
             type = "zfs_fs";
             mountpoint = "/tmp";
-            #options.mountpoint = "legacy";
-            options."com.sun:auto-snapshot" = "false";
-	  };
+            options = {
+              mountpoint = "/tmp";
+              sync = "disabled";
+            };
+          };
         };
       };
     };
@@ -110,8 +118,8 @@
   # Apparently there isn't a disko config option for this setting so the normal fileSystems option is expected to be used.
   # For ZFS native mounts another user recommended setting: 'boot.initrd.systemd.enable = true'. I don't know if this would be better currently
   fileSystems = {
-    "/cache".neededForBoot = true;
-    "/home".neededForBoot = true; # NOTE: I think I need this for home-manager to work correctly
     "/persist".neededForBoot = true;
+    "/cache".neededForBoot = true;
+    "/home".neededForBoot = true;
   };
 }

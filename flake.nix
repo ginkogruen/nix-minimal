@@ -28,17 +28,17 @@
     ...
   }: {
     nixosConfigurations = {
-      titan = nixpkgs.lib.nixosSystem {
+      enceladus = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./configuration.nix
+          ./hosts/enceladus/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.ginkogruen = import ./home.nix;
+              users.ginkogruen = import ./hosts/enceladus/home.nix;
               extraSpecialArgs = {inherit inputs;};
 	      sharedModules = [];
             };
