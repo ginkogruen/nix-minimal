@@ -1,11 +1,12 @@
 # nix-minimal
 
-Minimal opinionated NixOS configuration to be used as a base system to build upon.
+Minimal opinionated NixOS configuration for prototyping a base for my personal systems.
 
-The Aim is to provide a structure for all things which have to be done
-on install and can't easily be changed later.
+The goal is to orchestrate deeply integrated services to play nice with each other.
+Most prominently disk configuration which can't be easily changed later on.
 
-It should also be possible to set this up with minimal interaction and effort.
+Set up should work with minimal user interaction providing a system that works
+out of the box and is fully configured.
 
 ## Installation guide
 
@@ -67,7 +68,8 @@ I aim to hit the following functionality goals for my systems:
 - [ ] Network defined using systemd-networkd
 - [x] ZFS filesystem
 - [x] Full disk encryption with ZFS encryption
-- [x] Encryption unlockable through SSH
+- [ ] Encryption unlockable through SSH (**NOTE**: This may not have worked as expected)
+- [ ] Tailscale in initrd
 - [ ] ~~SWAP partition~~
 - [x] Impermanence setup for NixOS
 - [x] Impermanence rollback via ZFS snapshot
@@ -84,7 +86,7 @@ I aim to hit the following functionality goals for my systems:
 - [ ] 15min apart snapshots on home
 - [ ] Support for TMPs
 
-I may not hit every one of these goals so these are subject to change.
+These goals are subject to change.
 
 ## Documentation resources & inspiration
 
