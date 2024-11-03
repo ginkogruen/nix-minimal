@@ -22,6 +22,11 @@
       };
     };
 
+    disko = {
+      enable = true;
+      mainDisk = "/dev/nvme0n1";
+      useEncryption = true;
+    };
     impermanence.enable = true;
     sops-nix.enable = true;
   };
