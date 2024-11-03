@@ -51,6 +51,7 @@ in {
       availableKernelModules = ["r8169"];
       network = {
         enable = true;
+	/*
         ssh = {
           enable = true;
           port = 22;
@@ -61,6 +62,7 @@ in {
             "${config.sops.secrets."ssh/host/${hostname}/initrd".path}"
           ];
         };
+	*/
       };
     };
 
