@@ -7,6 +7,7 @@
     git.enable = true;
     impermanence.enable = true;
     sops-nix.enable = true;
+    ssh.enable = true;
   };
 
   home = {
