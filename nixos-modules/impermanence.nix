@@ -27,10 +27,10 @@ in {
         "/var/log" # systemd journal
         "/var/lib/nixos" # for persisting user uids and gids
       ];
-      user.ginkogruen = {
+      users.ginkogruen = {
         files = [
-	  ".ssh/id_ed25519"
-	  ".ssh/id_ed25519.pub"
+	  { file = ".ssh/id_ed25519"; parentDirectory = { mode = "0700"; user = "ginkogruen"; group = "users"; }; }
+	  { file = ".ssh/id_ed25519.pub"; parentDirectory = {  mode = "0700"; user = "ginkogruen"; group = "users"; }; }
 	];
       };
     };

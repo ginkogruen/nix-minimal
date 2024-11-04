@@ -10,7 +10,7 @@ in {
   imports = [inputs.nixos-facter-modules.nixosModules.facter];
 
   options.custom = {
-    facter.enable = mkEnableOption "Enable nixos-facter";
+    nixos-facter.enable = mkEnableOption "Enable nixos-facter";
   };
 
   config = mkIf cfg.enable {

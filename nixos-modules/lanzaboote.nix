@@ -5,17 +5,17 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkOptionEnable mkIf mkForce;
+  inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.custom.lanzaboote;
 in {
   imports = [inputs.lanzaboote.nixosModules.lanzaboote];
 
   options.custom = {
-    lanzaboote.enable = mkOptionEnable "Enable lanzaboote";
+    lanzaboote.enable = mkEnableOption "Enable lanzaboote";
   };
 
   config = mkIf cfg.enable {
-    environment.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       sbctl
     ];
 

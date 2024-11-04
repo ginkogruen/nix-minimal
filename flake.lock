@@ -180,7 +180,7 @@
         "type": "github"
       }
     },
-    "nixos-facter-module": {
+    "nixos-facter-modules": {
       "locked": {
         "lastModified": 1730737399,
         "narHash": "sha256-PzJrTMhHb9f46uMxmRD4GjnyVuNqxeyEvxaq7OierUQ=",
@@ -275,7 +275,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
-        "nixos-facter-module": "nixos-facter-module",
+        "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"
       }
