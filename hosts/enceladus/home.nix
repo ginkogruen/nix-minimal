@@ -4,6 +4,7 @@
   ];
 
   custom = {
+    git.enable = true;
     impermanence.enable = true;
     sops-nix.enable = true;
   };
