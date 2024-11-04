@@ -47,6 +47,14 @@ in {
                   pool = "zroot";
                 };
               };
+	      swap = {
+	        size = "16G";
+		content = {
+		  type = "swap";
+		  discardPolicy = "both";
+		  resumeDevice = true;
+		};
+	      };
             };
           };
         };
