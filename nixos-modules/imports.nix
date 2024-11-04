@@ -1,6 +1,8 @@
 {...}: {
   imports = [
     ./impermanence.nix
+    ./lanzaboote.nix
+    ./nixos-facter.nix
     ./sops-nix.nix
     #./sops-fix.nix
 

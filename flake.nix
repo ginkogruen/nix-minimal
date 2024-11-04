@@ -19,7 +19,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     impermanence.url = "github:nix-community/impermanence";
+
+    nixos-facter-module.url = "github:numtide/nixos-facter-modules";
   };
 
   outputs = inputs @ {
