@@ -35,6 +35,11 @@ in {
       };
     };
 
+    # NOTE: Temporary workaround for "/etc/machine-id" being persisted causing issues:
+    # REF: https://github.com/nix-community/impermanence/issues/229
+    boot.initrd.systemd.suppressedUnits = ["systemd-machine-id-commit.service"];
+    systemd.suppressedSystemUnits = ["systemd-machine-id-commit.service"];
+
     # Create home directory in '/persist' with appropriate permissions
     # This enables home-manager to work correctly
     systemd.tmpfiles.settings = {
