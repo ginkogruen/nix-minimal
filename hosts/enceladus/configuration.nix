@@ -79,7 +79,15 @@
 
   environment.systemPackages = with pkgs; [
     zfs # TODO Is this needed?
+    git
+    gh
   ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+  };
 
   networking = {
     useNetworkd = true;
