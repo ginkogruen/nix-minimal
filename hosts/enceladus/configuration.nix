@@ -100,6 +100,8 @@
     };
   };
 
+  security.polkit.enable = true; # Enable normal user to do 'reboot' among others.
+
   users = {
     mutableUsers = false; # Declarative users only
     users = {
