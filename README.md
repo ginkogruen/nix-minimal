@@ -42,6 +42,8 @@ Specify disk encryption keys using `--disk-encryption-keys /tmp/secret.key <path
 
 ## Unlock via SSH
 
+Currently **deactivated**!
+
 To unlock via SSH connect to the machine with:
 
 ```bash
@@ -65,8 +67,9 @@ I aim to hit the following functionality goals for my systems:
 - [x] Declarative partitioning using [disko](https://github.com/nix-community/disko)
 - [x] Systemd-boot as bootloader
 - [x] Systemd in initrd
-- [ ] Network defined using systemd-networkd
+- [x] Network defined using systemd-networkd
 - [x] ZFS filesystem
+- [ ] Configured ZFS filesystem (scrubbing etc.)
 - [x] Full disk encryption with ZFS encryption
 - [ ] Encryption unlockable through SSH (**NOTE**: This may not have worked as expected)
 - [ ] Tailscale in initrd
@@ -83,8 +86,8 @@ I aim to hit the following functionality goals for my systems:
 - [ ] Optional hardware adjustment via [nixos-facter](https://github.com/numtide/nixos-facter)
 - [ ] Optional secure boot with [lanzaboote](https://github.com/nix-community/lanzaboote)
 - [x] Setup with [home-manager](https://github.com/nix-community/home-manager)
-- [ ] 15min apart snapshots on home
-- [ ] Support for TMPs
+- [ ] 15min apart snapshots on home (via [sanoid](https://github.com/jimsalterjrs/sanoid))
+- [ ] Support for TPM
 
 These goals are subject to change.
 
