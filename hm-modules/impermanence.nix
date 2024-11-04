@@ -16,6 +16,7 @@
         "Downloads"
         ".local/state/nix/profiles" # Probable fix for home-manager service not starting
 	".nixfiles"
+	"nix-minimal"
       ];
       files = [
         ".ssh/id_ed25519"
