@@ -36,8 +36,8 @@ in {
       };
 
       secrets = {
-        "ssh/host/${hostname}/initrd" = {};
-        "ssh/host/${hostname}/ed25519" = {};
+        #"ssh/host/${hostname}/initrd" = {};
+        #"ssh/host/${hostname}/ed25519" = {};
         "password/user/ginkogruen".neededForUsers = true;
         "password/user/root".neededForUsers = true;
         "application/tailscale" = {};

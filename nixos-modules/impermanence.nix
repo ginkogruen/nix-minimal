@@ -20,13 +20,19 @@ in {
       hideMounts = true;
       files = [
         "/etc/machine-id"
-	"/etc/ssh/ssh_host_ed25519_key"
-	"/etc/ssh/ssh_host_ed25519_key.pub"
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
       directories = [
         "/var/log" # systemd journal
         "/var/lib/nixos" # for persisting user uids and gids
       ];
+      user.ginkogruen = {
+        files = [
+	  ".ssh/id_ed25519"
+	  ".ssh/id_ed25519.pub"
+	];
+      };
     };
 
     # Create home directory in '/persist' with appropriate permissions
