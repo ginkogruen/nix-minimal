@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix # Include the results of the hardware scan.
+    #./hardware-configuration.nix # Include the results of the hardware scan.
     ./disko.nix # disko disk partition config
 
     ../../nixos-modules/imports.nix
@@ -28,6 +28,7 @@
       useEncryption = true;
     };
     impermanence.enable = true;
+    nixos-facter.enable = true;
     sops-nix.enable = true;
   };
 
